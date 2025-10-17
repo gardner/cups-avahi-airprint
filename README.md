@@ -1,9 +1,9 @@
-# chuckcharlie/cups-avahi-airprint
+# gardner/cups-avahi-airprint
 
-Fork from [quadportnick/docker-cups-airprint](https://github.com/quadportnick/docker-cups-airprint)
+Fork from [chuckcharlie/cups-avahi-airprint](https://github.com/chuckcharlie/cups-avahi-airprint)
 
 ### Now supports ARM64 and AMD64!
-Use the *latest* or *version#* tags to auto choose the right architecture.
+Use the *latest* tags to auto choose the right architecture.
 
 This Alpine-based Docker image runs a CUPS instance that is meant as an AirPrint relay for printers that are already on the network but not AirPrint capable. The other images out there never seemed to work right. I forked the original to use Alpine instead of Ubuntu and work on more host OS's.
 
@@ -27,7 +27,7 @@ docker run --name cups --restart unless-stopped  --net host\
   -v <your config dir>:/config \
   -e CUPSADMIN="<username>" \
   -e CUPSPASSWORD="<password>" \
-  chuckcharlie/cups-avahi-airprint:latest
+  gardner/cups-avahi-airprint:latest
 ```
 
 ### Example docker compose config:
@@ -35,7 +35,7 @@ docker run --name cups --restart unless-stopped  --net host\
 version: '3.5'
 services:
   cups:
-    image: chuckcharlie/cups-avahi-airprint:latest
+    image: gardner/cups-avahi-airprint:latest
     container_name: cups
     network_mode: host
     volumes:
