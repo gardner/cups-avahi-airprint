@@ -1,7 +1,7 @@
 services:
   cups:
     container_name: cups
-    image: gardner/cups-avahi-airprint
+    image: ghcr.io/gardner/cups-avahi-airprint
     restart: unless-stopped
     network_mode: "host"
     environment:
