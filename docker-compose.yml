@@ -1,11 +1,8 @@
-version: '3.5'
-
 services:
   cups:
     container_name: cups
-    image: chuckcharlie/cups-avahi-airprint
-    #build: .
-    restart: always
+    image: gardner/cups-avahi-airprint
+    restart: unless-stopped
     network_mode: "host"
     environment:
       CUPSADMIN: cups
