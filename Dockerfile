@@ -2,23 +2,24 @@
 
 FROM alpine:3.20
 
-# Optional: match your original edge repos (keep if you need specific packages there)
 RUN --mount=type=cache,target=/var/cache/apk \
-    printf '%s\n%s\n' \
-      "https://dl-cdn.alpinelinux.org/alpine/edge/testing" \
-      "https://dl-cdn.alpinelinux.org/alpine/edge/community" \
-      "https://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories && \
-    apk add --update --no-cache \
-      brlaser \
-      cups cups-libs cups-pdf cups-client cups-filters \
-      gutenprint \
-      gutenprint-cups \
+    apk add --no-cache \
+      cups cups-libs cups-client cups-filters \
       ghostscript \
       hplip \
       avahi inotify-tools \
       python3 py3-pycups rsync wget perl \
       font-noto ttf-dejavu ghostscript-fonts
 
+RUN --mount=type=cache,target=/var/cache/apk \
+    apk add --no-cache \
+      --repository=https://dl-cdn.alpinelinux.org/alpine/edge/testing \
+      cups-pdf
+
+RUN --mount=type=cache,target=/var/cache/apk \
+    apk add --no-cache \
+      --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community \
+      brlaser gutenprint gutenprint-cups
 
 EXPOSE 631
 VOLUME ["/config", "/services"]
